@@ -31,7 +31,7 @@
 </head>
 <body>
   <div id="container">
-    <div id="label">다음 챌린지까지</div>
+    <div id="label">챌린지 기한</div>
     <div id="countdown">로딩 중...</div>
   </div>
 
@@ -57,7 +57,7 @@
         const m = Math.floor((diff / (1000 * 60)) % 60);
         const s = Math.floor((diff / 1000) % 60);
         document.getElementById("countdown").innerHTML =
-          `${d}일 ${h}시간 ${m}분 ${s}초`;
+          `${d}일 ${h}시 ${m}분`;
       } else {
         document.getElementById("countdown").innerHTML = "계산 중...";
       }
