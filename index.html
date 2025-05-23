@@ -6,52 +6,60 @@
   <style>
     body {
       margin: 0;
+      background-color: transparent;
+    }
+    #container {
+      background-color: #111;
+      color: white;
+      font-family: 'Noto Sans KR', sans-serif;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+    }
+    #label {
       font-size: 14px;
-      color: #333;
-      font-family: Arial, sans-serif;
+      margin-bottom: 10px;
     }
     #countdown {
-      padding: 10px;
-      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
-  <div id="countdown">로딩 중...</div>
+  <div id="container">
+    <div id="label">다음 챌린지까지</div>
+    <div id="countdown">로딩 중...</div>
+  </div>
 
   <script>
     function getNextTargetDate() {
       const now = new Date();
       const year = now.getFullYear();
       const month = now.getMonth();
-
       const fifteenth = new Date(year, month, 15);
       const lastDay = new Date(year, month + 1, 0);
-
-      if (now < fifteenth) {
-        return fifteenth;
-      } else if (now < lastDay) {
-        return lastDay;
-      } else {
-        return new Date(year, month + 1, 15);
-      }
+      if (now < fifteenth) return fifteenth;
+      else if (now < lastDay) return lastDay;
+      else return new Date(year, month + 1, 15);
     }
 
     function updateCountdown() {
       const now = new Date();
       const target = getNextTargetDate();
       const diff = target - now;
-
       if (diff > 0) {
         const d = Math.floor(diff / (1000 * 60 * 60 * 24));
         const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const m = Math.floor((diff / (1000 * 60)) % 60);
         const s = Math.floor((diff / 1000) % 60);
-
         document.getElementById("countdown").innerHTML =
-          `다음 챌린지까지: ${d}일 ${h}시간 ${m}분 ${s}초`;
+          `${d}일 ${h}시간 ${m}분 ${s}초`;
       } else {
-        document.getElementById("countdown").innerHTML = "다음 주기를 계산 중...";
+        document.getElementById("countdown").innerHTML = "계산 중...";
       }
     }
 
