@@ -29,16 +29,16 @@
       const now = new Date();
       const year = now.getFullYear();
       const month = now.getMonth();
-
-      const sixteenth = new Date(year, month, 16); // 16일로 변경
-      const lastDay = new Date(year, month + 1, 0, 23, 59, 59);
-
+    
+      const sixteenth = new Date(year, month, 16); // 16일 00:00
+      const firstDayNextMonth = new Date(year, month + 1, 1); // 다음 달 1일 00:00
+    
       if (now < sixteenth) {
         return sixteenth;
-      } else if (now < lastDay) {
-        return lastDay;
+      } else if (now < firstDayNextMonth) {
+        return firstDayNextMonth;
       } else {
-        return new Date(year, month + 1, 16); // 다음 달 16일
+        return new Date(year, month + 1, 16);
       }
     }
 
